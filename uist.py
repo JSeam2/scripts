@@ -37,10 +37,14 @@ P1 = [sheet["A4"],
 # populate names
 p_num = []
 
-for cell in sheet["A4:A15"]:
+for cell in sheet["A4:A17"]:
     temp = cell[0].value
-    temp = temp.split(' ')
-    p_num.append(temp[0][1:])   
+    try:
+        temp = temp.split(' ')
+        p_num.append(temp[0][1:])   
+    
+    except:
+        continue
 
 
 for mvt in range(0, len(P1)):
@@ -53,7 +57,7 @@ for mvt in range(0, len(P1)):
     elif mvt == 2:
         mvt_type = "Running"            
     
-    for row in range(0, 12):
+    for row in range(0, len(p_num)):
         # look for a ???_PIVOT.csv in PIVOT folder corresponding to p_num
         str_p_num = str(p_num[row])
         
@@ -115,7 +119,7 @@ for mvt in range(0, len(P3)):
     elif mvt == 2:
         mvt_type = "Running"
         
-    for row in range(0, 12):
+    for row in range(0, len(p_num)):
         # look for a ???_PIVOT.csv in PIVOT folder corresponding to p_num
         str_p_num = str(p_num[row])
         
@@ -243,7 +247,7 @@ for mvt in range(0, len(P2)):
     elif mvt == 2:
         mvt_type = "Running"
 
-    for row in range(0, 12):
+    for row in range(0, len(p_num)):
         # look for a ???(cleaned).xlsx in gesture folder corresponding to p_num
         str_p_num = str(p_num[row])
         
@@ -349,11 +353,9 @@ for mvt in range(0, len(P2)):
          
             
 # Save edits into a new workbook
-print('--------------------------')
-print('Saving new workbook in same folder')
-print('--------------------------')
-wb.save(outfile)    
-print('Saved as ' + outfile)
+#print('--------------------------')
+#print('Saving new workbook in same folder')
+#print('--------------------------')
+#wb.save(outfile)    
+#print('Saved as ' + outfile)
 
-
-    
